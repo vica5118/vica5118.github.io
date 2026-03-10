@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vica Mutiaturahmah | Portofolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-img-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border: 3px solid #38bdf8;
+            border-radius: 24px;
+            z-index: -1;
+            animation: rotate 15s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(56, 189, 248, 0.3);
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #38bdf8;
+            border: 4px solid #0f172a;
+        }
+
+        .cert-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.1);
+        }
+
+        /* Testimonial Style */
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .testimonial-dot.active {
+            background-color: #38bdf8;
+            width: 1.5rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Latar Belakang -->
+    <div class="blob top-0 left-0"></div>
+    <div class="blob bottom-0 right-0" style="background: #c084fc;"></div>
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto glass rounded-2xl px-6 py-3 flex justify-between items-center shadow-xl">
+            <div class="text-xl font-bold gradient-text">VICA.M</div>
+            <div class="hidden md:flex gap-8 font-medium">
+                <a href="#home" class="nav-link">Beranda</a>
+                <a href="#about" class="nav-link">Tentang</a>
+                <a href="#certificates" class="nav-link">Sertifikat</a>
+                <a href="#projects" class="nav-link">Karya</a>
+                <a href="#testimonials" class="nav-link">Testimonial</a>
+                <a href="#contact" class="nav-link">Kontak</a>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-sky-400">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div id="mobileMenu" class="fixed inset-0 z-[60] glass hidden flex-col items-center justify-center gap-8 text-2xl font-bold transition-all">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-4xl text-sky-400">&times;</button>
+        <a href="#home" onclick="toggleMobileMenu()" class="hover:text-sky-400">Beranda</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="hover:text-sky-400">Tentang</a>
+        <a href="#certificates" onclick="toggleMobileMenu()" class="hover:text-sky-400">Sertifikat</a>
+        <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-sky-400">Karya</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-sky-400">Testimonial</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-sky-400">Kontak</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1 text-center md:text-left">
+                <h2 class="text-xl md:text-2xl text-sky-400 font-semibold mb-2">Halo, Saya</h2>
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">Vica <span class="gradient-text">Mutiaturahmah</span></h1>
+                <p class="text-lg text-slate-400 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    Seorang kreatif muda berusia 17 tahun yang berfokus pada desain grafis dan teknologi. Siap membawa ide-ide segar ke dunia profesional.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="bg-sky-500 hover:bg-sky-600 px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-sky-500/20">
+                        Hubungi Saya
+                    </a>
+                    <a href="#projects" class="glass px-8 py-3 rounded-full font-bold hover:bg-white/10 transition-all border border-white/10">
+                        Lihat Karya
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center">
+                <div class="hero-img-container">
+                    <div class="w-64 h-80 md:w-80 md:h-[450px] overflow-hidden rounded-2xl shadow-2xl bg-slate-800 border border-white/10">
+                        <img src="https://i.ibb.co.com/LX96Bt7Q/1000381219.png" alt="Vica Mutiaturahmah" class="profile-img w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Tentang <span class="text-sky-400">Saya</span></h2>
+            
+            <div class="grid md:grid-cols-5 gap-8">
+                <div class="md:col-span-3">
+                    <div class="glass p-8 rounded-3xl text-left h-full border border-white/10">
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            Saya adalah individu yang bersemangat dalam industri kreatif. Di usia 17 tahun, saya telah mengasah kemampuan dalam desain visual dan manajemen proyek. Saya percaya pada kekuatan desain untuk menyampaikan pesan yang kuat.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center">
+                                <i class="fa-solid fa-user-check text-2xl text-purple-400 mb-2"></i>
+                                <p class="text-sm font-semibold">Status</p>
+                                <p class="text-xs text-slate-400 text-center">Siswa / Fresh Graduate</p>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center">
+                                <i class="fa-solid fa-location-dot text-2xl text-orange-400 mb-2"></i>
+                                <p class="text-sm font-semibold">Lokasi</p>
+                                <p class="text-xs text-slate-400 text-center">Indramayu, Jawa Barat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2">
+                    <div class="glass p-8 rounded-3xl h-full border border-white/10">
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-sky-400"></i> Pendidikan
+                        </h3>
+                        <div class="space-y-2">
+                            <div class="timeline-item">
+                                <p class="text-sky-400 font-bold text-xs uppercase tracking-wider">Lulus 2026</p>
+                                <h4 class="font-semibold text-slate-100 text-sm">SMK Al-Irsyad Al-Islamiyyah Haurgeulis</h4>
+                                <p class="text-xs text-slate-400">Pendidikan Menengah Kejuruan</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="text-slate-400 font-bold text-xs uppercase tracking-wider">2020 — 2023</p>
+                                <h4 class="font-semibold text-slate-200 text-sm">SMP Negeri 2 Anjatan</h4>
+                                <p class="text-xs text-slate-500">Sekolah Menengah Pertama</p>
+                            </div>
+                            <div class="timeline-item mb-0">
+                                <p class="text-slate-500 font-bold text-xs uppercase tracking-wider">Lulus 2020</p>
+                                <h4 class="font-semibold text-slate-300 text-sm">MI TWT Bedengsatu</h4>
+                                <p class="text-xs text-slate-500">Madrasah Ibtidaiyah</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sertifikat Section -->
+    <section id="certificates" class="py-24 px-6 bg-slate-900/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Sertifikat & <span class="text-sky-400">Prestasi</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Sertifikat PKL -->
+                <div class="cert-card glass p-6 rounded-3xl border border-white/10 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-sky-500/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-briefcase text-4xl text-sky-400"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Sertifikat Profesional</span>
+                        <h3 class="text-xl font-bold mt-1">Sertifikat PKL</h3>
+                        <p class="text-sm text-slate-400 mt-2">Menyelesaikan Praktik Kerja Lapangan dengan predikat sangat baik di instansi terkait, mengasah keterampilan teknis di dunia kerja nyata.</p>
+                        <div class="flex items-center gap-2 mt-4 text-xs font-semibold text-slate-300">
+                            <i class="fa-solid fa-calendar-check text-sky-400"></i> 2024 - 2025
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sertifikat Pramuka -->
+                <div class="cert-card glass p-6 rounded-3xl border border-white/10 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-orange-500/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-fire text-4xl text-orange-400"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-widest">Organisasi & Kepemimpinan</span>
+                        <h3 class="text-xl font-bold mt-1">Sertifikat Pramuka</h3>
+                        <p class="text-sm text-slate-400 mt-2">Aktif dalam kegiatan kepramukaan dan kepemimpinan. Mengembangkan karakter kedisiplinan, kerjasama tim, dan kemandirian.</p>
+                        <div class="flex items-center gap-2 mt-4 text-xs font-semibold text-slate-300">
+                            <i class="fa-solid fa-medal text-orange-400"></i> Tingkat Sekolah/Wilayah
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="projects" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Portofolio <span class="text-sky-400">Karya</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl glass border border-white/10">
+                    <div class="h-48 bg-gradient-to-br from-sky-600 to-indigo-700 flex items-center justify-center transition-all group-hover:scale-105">
+                        <i class="fa-solid fa-palette text-5xl text-white opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Desain Identitas</h3>
+                        <p class="text-sm text-slate-400 mb-4">Pembuatan logo dan aset visual untuk brand lokal di Indramayu.</p>
+                        <span class="inline-block px-3 py-1 bg-sky-500/10 text-sky-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-sky-500/20">Branding</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl glass border border-white/10">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center transition-all group-hover:scale-105">
+                        <i class="fa-solid fa-camera text-5xl text-white opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fotografi Produk</h3>
+                        <p class="text-sm text-slate-400 mb-4">Pengambilan gambar produk UMKM untuk keperluan pemasaran digital.</p>
+                        <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-purple-500/20">Seni Visual</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl glass border border-white/10">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center transition-all group-hover:scale-105">
+                        <i class="fa-solid fa-pen-nib text-5xl text-white opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Konten Kreatif</h3>
+                        <p class="text-sm text-slate-400 mb-4">Manajemen konten media sosial dengan desain yang menarik dan informatif.</p>
+                        <span class="inline-block px-3 py-1 bg-orange-500/10 text-orange-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-orange-500/20">Media</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Apa Kata <span class="text-sky-400">Mereka?</span></h2>
+            
+            <div class="relative overflow-hidden rounded-3xl glass border border-white/10 p-8 md:p-12">
+                <!-- Quote Icon -->
+                <i class="fa-solid fa-quote-left absolute top-8 left-8 text-6xl text-sky-500/10"></i>
+                
+                <div class="testimonial-container overflow-hidden">
+                    <div id="testimonialSlider" class="testimonial-slider">
+                        <!-- Slide 1 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <p class="text-lg md:text-xl text-slate-200 italic leading-relaxed mb-8">
+                                "Vica memiliki kreativitas yang luar biasa. Hasil desainnya selalu melebihi ekspektasi kami dan ia sangat responsif terhadap masukan."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-sky-500/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-user text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-100">Bpk. Ahmad</h4>
+                                    <p class="text-xs text-slate-400">Pemilik UMKM Lokal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <p class="text-lg md:text-xl text-slate-200 italic leading-relaxed mb-8">
+                                "Sangat disiplin dan memiliki etos kerja yang tinggi. Pengalaman PKL Vica menunjukkan potensinya yang besar di industri desain."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-user-tie text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-100">Ibu Sari</h4>
+                                    <p class="text-xs text-slate-400">Pembimbing Instansi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <p class="text-lg md:text-xl text-slate-200 italic leading-relaxed mb-8">
+                                "Kerja keras Vica di organisasi Pramuka benar-benar terlihat. Dia mampu memimpin tim dengan baik dan selalu solutif."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-shield-halved text-orange-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-100">Rizky Pratama</h4>
+                                    <p class="text-xs text-slate-400">Ketua Organisasi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination Dots -->
+                <div class="flex justify-center gap-3 mt-10">
+                    <button onclick="goToSlide(0)" class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 transition-all"></button>
+                    <button onclick="goToSlide(1)" class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 transition-all"></button>
+                    <button onclick="goToSlide(2)" class="testimonial-dot w-3 h-3 rounded-full bg-slate-700 transition-all"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Mari <span class="text-sky-400">Berkolaborasi</span></h2>
+            
+            <div class="grid gap-4 mb-10 text-left">
+                <a href="https://wa.me/6283826718366" target="_blank" class="glass p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-all border border-white/10">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-green-500 text-xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">WhatsApp</p>
+                        <p class="text-sm md:text-base font-bold">0838 2671 8366</p>
+                    </div>
+                </a>
+
+                <a href="mailto:mutiaturahmahvica@gmail.com" class="glass p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-all border border-white/10">
+                    <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-500 text-xl">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Email</p>
+                        <p class="text-sm md:text-base font-bold text-wrap">mutiaturahmahvica@gmail.com</p>
+                    </div>
+                </a>
+            </div>
+
+            <p class="text-slate-400 text-sm">Tertarik untuk bekerja sama? Silakan hubungi saya melalui salah satu media di atas.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 Vica Mutiaturahmah. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        // Testimonial Slider Logic
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const slider = document.getElementById('testimonialSlider');
+        const dots = document.querySelectorAll('.testimonial-dot');
+
+        function goToSlide(n) {
+            currentSlide = n;
+            slider.style.transform = `translateX(-${n * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                if(index === n) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }, 5000);
+
+        // Initialize first slide
+        goToSlide(0);
+    </script>
+</body>
+</html>
